@@ -83,7 +83,7 @@ function More_Mazes (Even_More_Mazes: number) {
         if (Even_More_Mazes == 2) {
             tiles.setTileAt(Value23, assets.tile`myTile2`)
         } else if (Even_More_Mazes == 3) {
-            tiles.setTileAt(Value23, assets.tile`myTile0`)
+            tiles.setTileAt(Value23, assets.tile`myTile3`)
         } else {
             tiles.setTileAt(Value23, assets.tile`myTile`)
         }
