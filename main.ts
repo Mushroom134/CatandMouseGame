@@ -3,6 +3,8 @@ namespace SpriteKind {
     export const KittyCat = SpriteKind.create()
     export const Door = SpriteKind.create()
     export const Rose = SpriteKind.create()
+    export const Door2 = SpriteKind.create()
+    export const Door3 = SpriteKind.create()
 }
 function More_Mazes (Even_More_Mazes: number) {
     tiles.setCurrentTilemap(tilemap`level2`)
@@ -89,7 +91,7 @@ function More_Mazes (Even_More_Mazes: number) {
 }
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door, function (sprite, otherSprite) {
     EvenMoremazes = game.askForNumber("Maze 1, 2 or 3", 1)
-    while (!(EvenMoremazes <= 3 && (EvenMoremazes >= 1 && EvenMoremazes >= 2))) {
+    while (!(EvenMoremazes <= 3 && EvenMoremazes >= 1)) {
         EvenMoremazes = game.askForNumber("Maze 1, 2 or 3", 1)
     }
     More_Mazes(EvenMoremazes)
@@ -122,10 +124,43 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose, function (sprite, oth
         game.gameOver(true)
     }
 })
+function Rose_and_book_Placement () {
+    if (EvenMoremazes == 1) {
+        tiles.placeOnRandomTile(Book_1, sprites.dungeon.darkGroundCenter)
+        tiles.placeOnRandomTile(Book_2, sprites.dungeon.darkGroundCenter)
+        tiles.placeOnRandomTile(Book_3, sprites.dungeon.darkGroundCenter)
+        tiles.placeOnRandomTile(Rose_1, sprites.dungeon.darkGroundCenter)
+        tiles.placeOnRandomTile(Rose_2, sprites.dungeon.darkGroundCenter)
+        tiles.placeOnRandomTile(Rose_3, sprites.dungeon.darkGroundCenter)
+    }
+    if (EvenMoremazes == 1) {
+        tiles.placeOnRandomTile(Book_1, assets.tile`myTile1`)
+        tiles.placeOnRandomTile(Book_2, assets.tile`myTile1`)
+        tiles.placeOnRandomTile(Book_3, assets.tile`myTile1`)
+        tiles.placeOnRandomTile(Rose_1, assets.tile`myTile1`)
+        tiles.placeOnRandomTile(Rose_2, assets.tile`myTile1`)
+        tiles.placeOnRandomTile(Rose_3, assets.tile`myTile1`)
+    }
+    if (EvenMoremazes == 3) {
+        tiles.placeOnRandomTile(Book_1, assets.tile`myTile0`)
+        tiles.placeOnRandomTile(Book_2, assets.tile`myTile0`)
+        tiles.placeOnRandomTile(Book_3, assets.tile`myTile0`)
+        tiles.placeOnRandomTile(Rose_1, assets.tile`myTile0`)
+        tiles.placeOnRandomTile(Rose_2, assets.tile`myTile0`)
+        tiles.placeOnRandomTile(Rose_3, assets.tile`myTile0`)
+    }
+}
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.KittyCat, function (sprite, otherSprite) {
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
     game.setGameOverMessage(true, "The Cat Wins")
     game.gameOver(true)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Door3, function (sprite, otherSprite) {
+    EvenMoremazes = game.askForNumber("Maze 1, 2 or 3", 1)
+    while (!(EvenMoremazes <= 3 && EvenMoremazes >= 1)) {
+        EvenMoremazes = game.askForNumber("Maze 1, 2 or 3", 1)
+    }
+    More_Mazes(EvenMoremazes)
 })
 function RoseDoor_Placement () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Door)
@@ -165,7 +200,7 @@ function RoseDoor_Placement () {
         . . . e e e e e e e e b . . . . 
         . . . e e e e e e e e . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Door)
+        `, SpriteKind.Door2)
     Book_3 = sprites.create(img`
         . . . . . e e e e e e e e . . . 
         . . . . e d d d d d d d e . . . 
@@ -183,7 +218,7 @@ function RoseDoor_Placement () {
         . . . e e e e e e e e b . . . . 
         . . . e e e e e e e e . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Door)
+        `, SpriteKind.Door3)
     Rose_1 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . e e e e . . . . . . 
@@ -238,7 +273,20 @@ function RoseDoor_Placement () {
         . . . . . . . . . . 7 7 7 . . . 
         . . . . 7 7 7 7 7 7 7 7 . . . . 
         `, SpriteKind.Rose)
+    tiles.placeOnRandomTile(Book_1, sprites.dungeon.floorDarkDiamond)
+    tiles.placeOnRandomTile(Book_2, sprites.dungeon.floorDarkDiamond)
+    tiles.placeOnRandomTile(Book_3, sprites.dungeon.floorDarkDiamond)
+    tiles.placeOnRandomTile(Rose_1, sprites.dungeon.floorDarkDiamond)
+    tiles.placeOnRandomTile(Rose_2, sprites.dungeon.floorDarkDiamond)
+    tiles.placeOnRandomTile(Rose_3, sprites.dungeon.floorDarkDiamond)
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Door2, function (sprite, otherSprite) {
+    EvenMoremazes = game.askForNumber("Maze 1, 2 or 3", 1)
+    while (!(EvenMoremazes <= 3 && EvenMoremazes >= 1)) {
+        EvenMoremazes = game.askForNumber("Maze 1, 2 or 3", 1)
+    }
+    More_Mazes(EvenMoremazes)
+})
 let Rose_3: Sprite = null
 let Rose_2: Sprite = null
 let Rose_1: Sprite = null
@@ -309,3 +357,4 @@ namespace userconfig {
     export const ARCADE_SCREEN_WIDTH = 640
     export const ARCADE_SCREEN_HEIGHT = 640
 }
+RoseDoor_Placement()
