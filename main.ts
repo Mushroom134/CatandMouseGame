@@ -85,6 +85,22 @@ function More_Mazes (Even_More_Mazes: number) {
         tiles.setWallAt(Value23, true)
     }
 }
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door, function (sprite, otherSprite) {
+    EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
+    while (!(EvenMoremazes >= 1 && EvenMoremazes <= 2)) {
+        EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
+    }
+    More_Mazes(EvenMoremazes)
+    Rose_and_book_Placement()
+})
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door3, function (sprite, otherSprite) {
+    EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
+    while (!(EvenMoremazes >= 1 && EvenMoremazes <= 2)) {
+        EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
+    }
+    More_Mazes(EvenMoremazes)
+    Rose_and_book_Placement()
+})
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose2, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
         . . . . . . . . . . . . . . . . 
@@ -113,6 +129,14 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose2, function (sprite, ot
         game.gameOver(true)
     }
 })
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door2, function (sprite, otherSprite) {
+    EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
+    while (!(EvenMoremazes >= 1 && EvenMoremazes <= 2)) {
+        EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
+    }
+    More_Mazes(EvenMoremazes)
+    Rose_and_book_Placement()
+})
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
         . . . . . . . . . . . . . . . . 
@@ -140,14 +164,6 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose, function (sprite, oth
         game.setGameOverMessage(true, "The Mouse Wins")
         game.gameOver(true)
     }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSprite) {
-    EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
-    while (!(EvenMoremazes >= 1 && EvenMoremazes <= 2)) {
-        EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
-    }
-    More_Mazes(EvenMoremazes)
-    Rose_and_book_Placement()
 })
 function Rose_and_book_Placement () {
     if (EvenMoremazes == 1) {
@@ -179,14 +195,6 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.KittyCat, function (sprite,
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
     game.setGameOverMessage(true, "The Cat Wins")
     game.gameOver(true)
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Door3, function (sprite, otherSprite) {
-    EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
-    while (!(EvenMoremazes >= 1 && EvenMoremazes <= 2)) {
-        EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
-    }
-    More_Mazes(EvenMoremazes)
-    Rose_and_book_Placement()
 })
 function RoseDoor_Placement () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Door)
@@ -310,14 +318,6 @@ function RoseDoor_Placement () {
     tiles.placeOnRandomTile(Rose_2, sprites.dungeon.floorDarkDiamond)
     tiles.placeOnRandomTile(Rose_3, sprites.dungeon.floorDarkDiamond)
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Door2, function (sprite, otherSprite) {
-    EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
-    while (!(EvenMoremazes >= 1 && EvenMoremazes <= 2)) {
-        EvenMoremazes = game.askForNumber("Maze 1 or 2", 1)
-    }
-    More_Mazes(EvenMoremazes)
-    Rose_and_book_Placement()
-})
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose3, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
         . . . . . . . . . . . . . . . . 
