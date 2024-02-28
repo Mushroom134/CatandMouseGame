@@ -37,7 +37,24 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose2, function (sprite, otherSp
     }
 })
 function Enemies (who_do_you_want_to_deal_with: number) {
-    list = [sprites.create(img`
+    List_of_things_to_run_from = [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . 3 . . . . . . . . 
+        . . . . . . 3 3 . . . . . . . . 
+        . . . . 3 . 3 3 . . . . . . . . 
+        . . . . 3 3 3 3 3 . 3 . . . . . 
+        . . . . . 3 3 . 3 . 3 . . . . . 
+        . . . . . 3 . 3 3 3 . . . . . . 
+        . . . . . . 3 3 3 3 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -54,7 +71,8 @@ function Enemies (who_do_you_want_to_deal_with: number) {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `, SpriteKind.Player), 1]
+        `]
+    list = [tilemap`level13`, tilemap`level13`]
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose3, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
@@ -224,7 +242,8 @@ let Rose_2: Sprite = null
 let Rose_1: Sprite = null
 let Book_2: Sprite = null
 let Book_1: Sprite = null
-let list: Sprite[] = []
+let list: tiles.TileMapData[] = []
+let List_of_things_to_run_from: Image[] = []
 game.showLongText("Mouse collects the roses to win, Dont let the cat catch you. The books take you to new mazes for more roses. Hint: There are fake walls if you know how to find them.", DialogLayout.Full)
 tiles.setCurrentTilemap(tilemap`level1`)
 splitScreen.setSplitScreenEnabled(true)
