@@ -8,34 +8,6 @@ namespace SpriteKind {
     export const Rose2 = SpriteKind.create()
     export const Rose3 = SpriteKind.create()
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose2, function (sprite, otherSprite) {
-    if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . e e e e . . . . . . 
-        . . . . . e e 2 2 e . . . . . . 
-        . . e e e e e 2 2 e e e e . . . 
-        . . e 2 2 2 e e e 2 2 2 2 e . . 
-        . . e 2 2 e e e 2 e e e e e . . 
-        . . e e e e 2 e e e 2 2 e . . . 
-        . . . e e 2 2 e e 2 2 2 e . . . 
-        . . e e 2 2 2 e 2 2 2 2 e 7 . . 
-        . . e e e 2 e e 2 2 2 2 e 7 . . 
-        . . . . e e e e e 2 2 e e 7 . . 
-        . . . . . e e 2 e e 2 e 7 7 . . 
-        . . . . . . e e e e e e 7 7 . . 
-        . . . . . . . . . . . 7 7 . . . 
-        . . . . . . . . . . 7 7 7 . . . 
-        . . . . 7 7 7 7 7 7 7 7 . . . . 
-        `)) {
-        sprites.destroy(otherSprite, effects.starField, 500)
-        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 1)
-        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Two), MultiplayerState.score, 0)
-    }
-    if (mp.getPlayerState(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score) == 4) {
-        game.setGameOverMessage(true, "The Mouse Wins")
-        game.gameOver(true)
-    }
-})
 function Enemies (who_do_you_want_to_deal_with: number) {
     List_of_things_to_run_from = [img`
         . . . . . . . . . . . . . . . . 
@@ -91,35 +63,7 @@ function Enemies (who_do_you_want_to_deal_with: number) {
         `]
     return List_of_things_to_run_from[who_do_you_want_to_deal_with - 1]
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose3, function (sprite, otherSprite) {
-    if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . e e e e . . . . . . 
-        . . . . . e e 2 2 e . . . . . . 
-        . . e e e e e 2 2 e e e e . . . 
-        . . e 2 2 2 e e e 2 2 2 2 e . . 
-        . . e 2 2 e e e 2 e e e e e . . 
-        . . e e e e 2 e e e 2 2 e . . . 
-        . . . e e 2 2 e e 2 2 2 e . . . 
-        . . e e 2 2 2 e 2 2 2 2 e 7 . . 
-        . . e e e 2 e e 2 2 2 2 e 7 . . 
-        . . . . e e e e e 2 2 e e 7 . . 
-        . . . . . e e 2 e e 2 e 7 7 . . 
-        . . . . . . e e e e e e 7 7 . . 
-        . . . . . . . . . . . 7 7 . . . 
-        . . . . . . . . . . 7 7 7 . . . 
-        . . . . 7 7 7 7 7 7 7 7 . . . . 
-        `)) {
-        sprites.destroy(otherSprite, effects.starField, 500)
-        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 1)
-        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Two), MultiplayerState.score, 0)
-    }
-    if (mp.getPlayerState(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score) == 4) {
-        game.setGameOverMessage(true, "The Mouse Wins")
-        game.gameOver(true)
-    }
-})
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door, function (sprite, otherSprite) {
     test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
     while (!(test_imput >= 1 && test_imput <= 3)) {
         test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
@@ -130,12 +74,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSpr
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
     Chasing.setPosition(0, 0)
     Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+    Chasing.setVelocity(50, 50)
 })
-function Enemies2 (who_do_you_want_to_deal_with: number) {
-    Place_to_run_in = [tilemap`level13`, tilemap`level15`, tilemap`level16`]
-    return Place_to_run_in[who_do_you_want_to_deal_with - 1]
-}
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose2, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . e e e e . . . . . . 
@@ -163,7 +104,81 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose, function (sprite, otherSpr
         game.gameOver(true)
     }
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Player, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door2, function (sprite, otherSprite) {
+    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(test_imput >= 1 && test_imput <= 3)) {
+        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
+    sprites.destroy(otherSprite)
+    tiles.setCurrentTilemap(Enemies2(test_imput))
+    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setPosition(0, 0)
+    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+    Chasing.setVelocity(50, 50)
+})
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+})
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose, function (sprite, otherSprite) {
+    if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . e e e e . . . . . . 
+        . . . . . e e 2 2 e . . . . . . 
+        . . e e e e e 2 2 e e e e . . . 
+        . . e 2 2 2 e e e 2 2 2 2 e . . 
+        . . e 2 2 e e e 2 e e e e e . . 
+        . . e e e e 2 e e e 2 2 e . . . 
+        . . . e e 2 2 e e 2 2 2 e . . . 
+        . . e e 2 2 2 e 2 2 2 2 e 7 . . 
+        . . e e e 2 e e 2 2 2 2 e 7 . . 
+        . . . . e e e e e 2 2 e e 7 . . 
+        . . . . . e e 2 e e 2 e 7 7 . . 
+        . . . . . . e e e e e e 7 7 . . 
+        . . . . . . . . . . . 7 7 . . . 
+        . . . . . . . . . . 7 7 7 . . . 
+        . . . . 7 7 7 7 7 7 7 7 . . . . 
+        `)) {
+        sprites.destroy(otherSprite, effects.starField, 500)
+        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 1)
+        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Two), MultiplayerState.score, 0)
+    }
+    if (mp.getPlayerState(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score) == 4) {
+        game.setGameOverMessage(true, "The Mouse Wins")
+        game.gameOver(true)
+    }
+})
+function Enemies2 (who_do_you_want_to_deal_with: number) {
+    Place_to_run_in = [tilemap`level13`, tilemap`level15`, tilemap`level16`]
+    return Place_to_run_in[who_do_you_want_to_deal_with - 1]
+}
+sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door, function (sprite, otherSprite) {
+    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(test_imput >= 1 && test_imput <= 3)) {
+        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
+    sprites.destroy(otherSprite)
+    tiles.setCurrentTilemap(Enemies2(test_imput))
+    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setPosition(0, 0)
+    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+    Chasing.setVelocity(50, 50)
+})
+sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door2, function (sprite, otherSprite) {
+    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(test_imput >= 1 && test_imput <= 3)) {
+        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
+    sprites.destroy(otherSprite)
+    tiles.setCurrentTilemap(Enemies2(test_imput))
+    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setPosition(0, 0)
+    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+    Chasing.setVelocity(50, 50)
+})
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.KittyCat, function (sprite, otherSprite) {
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
     game.setGameOverMessage(true, "The Cat Wins")
     game.gameOver(true)
@@ -270,17 +285,33 @@ function RoseDoor_Placement () {
     tiles.placeOnRandomTile(Rose_2, sprites.dungeon.floorDarkDiamond)
     tiles.placeOnRandomTile(Rose_3, sprites.dungeon.floorDarkDiamond)
 }
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Door2, function (sprite, otherSprite) {
-    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    while (!(test_imput >= 1 && test_imput <= 3)) {
-        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose3, function (sprite, otherSprite) {
+    if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . e e e e . . . . . . 
+        . . . . . e e 2 2 e . . . . . . 
+        . . e e e e e 2 2 e e e e . . . 
+        . . e 2 2 2 e e e 2 2 2 2 e . . 
+        . . e 2 2 e e e 2 e e e e e . . 
+        . . e e e e 2 e e e 2 2 e . . . 
+        . . . e e 2 2 e e 2 2 2 e . . . 
+        . . e e 2 2 2 e 2 2 2 2 e 7 . . 
+        . . e e e 2 e e 2 2 2 2 e 7 . . 
+        . . . . e e e e e 2 2 e e 7 . . 
+        . . . . . e e 2 e e 2 e 7 7 . . 
+        . . . . . . e e e e e e 7 7 . . 
+        . . . . . . . . . . . 7 7 . . . 
+        . . . . . . . . . . 7 7 7 . . . 
+        . . . . 7 7 7 7 7 7 7 7 . . . . 
+        `)) {
+        sprites.destroy(otherSprite, effects.starField, 500)
+        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score, 1)
+        mp.changePlayerStateBy(mp.playerSelector(mp.PlayerNumber.Two), MultiplayerState.score, 0)
     }
-    sprites.destroy(otherSprite)
-    tiles.setCurrentTilemap(Enemies2(test_imput))
-    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
-    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
-    Chasing.setPosition(0, 0)
-    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+    if (mp.getPlayerState(mp.playerSelector(mp.PlayerNumber.One), MultiplayerState.score) == 4) {
+        game.setGameOverMessage(true, "The Mouse Wins")
+        game.gameOver(true)
+    }
 })
 let Rose_3: Sprite = null
 let Rose_2: Sprite = null
@@ -314,7 +345,7 @@ mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.One), sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Player))
+    `, SpriteKind.littlemouse))
 tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), tiles.getTileLocation(62, 1))
 splitScreen.cameraFollowSprite(splitScreen.Camera.Camera1, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
 mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
@@ -334,13 +365,9 @@ mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
     . f f . . f f . . . . . f f . f 
     . f f . . f f . . . . . f f . f 
     . f f . . f f . . . . . f f . f 
-    `, SpriteKind.Player))
+    `, SpriteKind.KittyCat))
 tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)), tiles.getTileLocation(62, 62))
 splitScreen.cameraFollowSprite(splitScreen.Camera.Camera2, mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)))
 mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.One), 200, 200)
 mp.moveWithButtons(mp.playerSelector(mp.PlayerNumber.Two), 200, 200)
-namespace userconfig {
-    export const ARCADE_SCREEN_WIDTH = 640
-    export const ARCADE_SCREEN_HEIGHT = 640
-}
 RoseDoor_Placement()
