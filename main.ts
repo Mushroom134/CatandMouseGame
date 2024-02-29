@@ -124,7 +124,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSpr
     while (!(test_imput >= 1 && test_imput <= 3)) {
         test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
     }
-    sprites.destroyAllSpritesOfKind(SpriteKind.Door)
+    sprites.destroy(otherSprite)
     tiles.setCurrentTilemap(Enemies2(test_imput))
     Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
@@ -275,7 +275,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Door2, function (sprite, otherSp
     while (!(test_imput >= 1 && test_imput <= 3)) {
         test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
     }
-    sprites.destroyAllSpritesOfKind(SpriteKind.Door)
+    sprites.destroy(otherSprite)
     tiles.setCurrentTilemap(Enemies2(test_imput))
     Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
