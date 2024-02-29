@@ -39,40 +39,57 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose2, function (sprite, otherSp
 function Enemies (who_do_you_want_to_deal_with: number) {
     List_of_things_to_run_from = [img`
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . 3 . . . . . . . . 
-        . . . . . . 3 3 . . . . . . . . 
-        . . . . 3 . 3 3 . . . . . . . . 
-        . . . . 3 3 3 3 3 . 3 . . . . . 
-        . . . . . 3 3 . 3 . 3 . . . . . 
-        . . . . . 3 . 3 3 3 . . . . . . 
-        . . . . . . 3 3 3 3 . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . f f . 
+        . . . . . f f f f f . f f f . . 
+        . . . . f f 2 f f f . . . . . . 
+        . . . . f f f f f f . . . . f . 
+        . . . . . f f f f f . . . . f . 
+        . . . . . . f f f f . . f f f . 
+        . . . . f f f f f f f f . . . . 
+        . . . f f f f f f f f f f . . . 
+        f f . . f f f f f f f f f . . . 
+        . f f f . . f f f f f f f . . . 
+        . . . . f f f f f f f f f f f . 
+        . f f f f f f f f f f f f f f f 
+        . f f f . . . f f f f f . f f f 
+        . . f . f . . f f f f . f . . . 
+        . . . . . f . . f f . . . . . f 
         `, img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
+        . . . . . f f f f f f f f f 2 . 
+        . . . . . c f f f f f f f f 2 . 
+        . . . . . c f f f f f f f f 2 . 
+        . . . . . c f f f f f f f f 2 . 
+        . f f f f f f f f f f f f f f . 
+        . f f f f f f f f f f f f f f . 
+        . f f f f f f f f f f f f f f . 
+        . f f f f f f f f f f f f f f . 
+        . c c c c c c c c c c c c c c . 
+        . . f d d f . . . . f d d f . . 
+        . . f f f f . . . . f f f f . . 
         . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        `, img`
+        . . . . . . . . . . . 4 4 . . . 
+        4 4 4 4 4 . . . . . 4 4 4 4 . . 
+        4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 . 
+        4 4 4 4 4 4 d d d d 4 4 4 4 4 . 
+        4 4 4 4 4 d 6 d d 6 d . 4 4 4 4 
+        4 4 4 . . d d d d d d . . 4 4 4 
+        4 4 4 . . d d d d d d . . 4 4 4 
+        4 4 . . . . d d d d . . . . 4 4 
+        4 4 . e . . e 9 9 d . . . . 4 4 
+        4 . . d e e 9 9 9 9 d . . . . 4 
+        4 . d e f f e 9 9 9 d d d . . . 
+        . . d e e e e 9 9 9 9 9 d d . . 
+        . . d d d d d 9 9 9 9 9 9 d d . 
+        . . . 9 e e e 9 9 9 9 9 9 . d . 
+        . . . e e e e 9 9 9 9 . . . . . 
+        . . . e e . d . . d . . . . . . 
         `]
-    list = [tilemap`level13`, tilemap`level13`]
+    return List_of_things_to_run_from[who_do_you_want_to_deal_with - 1]
 }
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose3, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
@@ -102,6 +119,22 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose3, function (sprite, otherSp
         game.gameOver(true)
     }
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Door, function (sprite, otherSprite) {
+    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(test_imput >= 1 && test_imput <= 3)) {
+        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
+    sprites.destroyAllSpritesOfKind(SpriteKind.Door)
+    tiles.setCurrentTilemap(Enemies2(test_imput))
+    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setPosition(0, 0)
+    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+})
+function Enemies2 (who_do_you_want_to_deal_with: number) {
+    Place_to_run_in = [tilemap`level13`, tilemap`level15`, tilemap`level16`]
+    return Place_to_run_in[who_do_you_want_to_deal_with - 1]
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Rose, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
         . . . . . . . . . . . . . . . . 
@@ -237,12 +270,26 @@ function RoseDoor_Placement () {
     tiles.placeOnRandomTile(Rose_2, sprites.dungeon.floorDarkDiamond)
     tiles.placeOnRandomTile(Rose_3, sprites.dungeon.floorDarkDiamond)
 }
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Door2, function (sprite, otherSprite) {
+    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(test_imput >= 1 && test_imput <= 3)) {
+        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
+    sprites.destroyAllSpritesOfKind(SpriteKind.Door)
+    tiles.setCurrentTilemap(Enemies2(test_imput))
+    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setPosition(0, 0)
+    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+})
 let Rose_3: Sprite = null
 let Rose_2: Sprite = null
 let Rose_1: Sprite = null
 let Book_2: Sprite = null
 let Book_1: Sprite = null
-let list: tiles.TileMapData[] = []
+let Place_to_run_in: tiles.TileMapData[] = []
+let Chasing: Sprite = null
+let test_imput = 0
 let List_of_things_to_run_from: Image[] = []
 game.showLongText("Mouse collects the roses to win, Dont let the cat catch you. The books take you to new mazes for more roses. Hint: There are fake walls if you know how to find them.", DialogLayout.Full)
 tiles.setCurrentTilemap(tilemap`level1`)
