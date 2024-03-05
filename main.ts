@@ -119,6 +119,11 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door2, function (sprite, ot
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
+    game.setGameOverMessage(false, "Mouse trap")
+    game.gameOver(false)
+})
+sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Enemy, function (sprite, otherSprite) {
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy, effects.fire, 500)
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
@@ -165,6 +170,31 @@ sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door, function (sprite, otherS
     Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
     Chasing.setVelocity(50, 50)
 })
+controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)),
+    [img`
+        . . . . . . . . . f . . . . f . 
+        . . f f f . . . . f f . . f f . 
+        . f f f f f . . . f f f f f f . 
+        f f f . f f . . . f 9 f f c f . 
+        f f . . . f f . . f f f f f f . 
+        f f . . . . . . . f f f f f f . 
+        f f . . . . . . . f f f f f f . 
+        f f f . . . . . . . f f f f . . 
+        f f f f . . . . . f f f f f f . 
+        f f f f f f f f f f f f f f f . 
+        f f f f f f f f f f f f f f f . 
+        f f f f f f f f f f f f f f f . 
+        f f f f f f f f f f f f f f f . 
+        f . f f . . . . . f f . . f f . 
+        f . f f . . . . . f f . . f f . 
+        f . f f . . . . . f f . . f f . 
+        `],
+    500,
+    false
+    )
+})
 sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door2, function (sprite, otherSprite) {
     test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
     while (!(test_imput >= 1 && test_imput <= 3)) {
@@ -182,6 +212,56 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.KittyCat, function (sprite,
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
     game.setGameOverMessage(true, "The Cat Wins")
     game.gameOver(true)
+})
+controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)),
+    [img`
+        . f . . . . f . . . . . . . . . 
+        . f f . . f f . . . . f f f . . 
+        . f f f f f f . . . f f f f f . 
+        . f c f f 9 f . . . f f . f f f 
+        . f f f f f f . . f f . . . f f 
+        . f f f f f f . . . . . . . f f 
+        . f f f f f f . . . . . . . f f 
+        . . f f f f . . . . . . . f f f 
+        . f f f f f f . . . . . f f f f 
+        . f f f f f f f f f f f f f f f 
+        . f f f f f f f f f f f f f f f 
+        . f f f f f f f f f f f f f f f 
+        . f f f f f f f f f f f f f f f 
+        . f f . . f f . . . . . f f . f 
+        . f f . . f f . . . . . f f . f 
+        . f f . . f f . . . . . f f . f 
+        `],
+    500,
+    false
+    )
+})
+controller.player1.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)),
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . d d . . . . 
+        . . . . . . . . . d 3 3 d . . . 
+        . . . . . . . . . d 3 3 d . . . 
+        . . . . d 1 1 1 . d 3 d . . . . 
+        . . . d d d d d 1 . d d d . . . 
+        . . d d b d d d d 1 d d f d . . 
+        . . d d d b d d d d d d d d f . 
+        . . 3 d d b d d d d d . . . . . 
+        . . 3 d d d b d d 3 d d d . . . 
+        . . . 3 3 3 3 3 3 . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `],
+    500,
+    false
+    )
 })
 function RoseDoor_Placement () {
     sprites.destroyAllSpritesOfKind(SpriteKind.Door)
@@ -313,6 +393,31 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose3, function (sprite, ot
         game.gameOver(true)
     }
 })
+controller.player1.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
+    animation.runImageAnimation(
+    mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)),
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . d d . . . . . . . . . . 
+        . . . d 3 3 d . . . . . . . . . 
+        . . . d 3 3 d . . . . . . . . . 
+        . . . . d 3 d . 1 1 1 d . . . . 
+        . . . d d d . 1 d d d d d . . . 
+        . . d f d d 1 d d d d b d d . . 
+        . f d d d d d d d d b d d d . . 
+        . . . . . d d d d d b d d 3 . . 
+        . . . d d d 3 d d b d d d 3 . . 
+        . . . . . . . 3 3 3 3 3 3 . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `],
+    500,
+    false
+    )
+})
 let Rose_3: Sprite = null
 let Rose_2: Sprite = null
 let Rose_1: Sprite = null
@@ -353,11 +458,11 @@ mp.setPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two), sprites.create(img`
     . f f . . f f . . . . f f f . . 
     . f f f f f f . . . f f f f f . 
     . f c f f 9 f . . . f f . f f f 
-    . f f f f f f . . f f . . . . f 
-    . f f f f f f . . . . . . . . f 
-    . f f f f f f . . . . . . . . f 
-    . . f f f f . . . . . . . . . f 
+    . f f f f f f . . f f . . . f f 
     . f f f f f f . . . . . . . f f 
+    . f f f f f f . . . . . . . f f 
+    . . f f f f . . . . . . . f f f 
+    . f f f f f f . . . . . f f f f 
     . f f f f f f f f f f f f f f f 
     . f f f f f f f f f f f f f f f 
     . f f f f f f f f f f f f f f f 
