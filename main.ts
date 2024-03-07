@@ -65,16 +65,13 @@ function Enemies (who_do_you_want_to_deal_with: number) {
 }
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door, function (sprite, otherSprite) {
     test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    while (!(test_imput >= 1 && test_imput <= 3)) {
-        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    }
     sprites.destroy(otherSprite)
     tiles.setCurrentTilemap(Enemies2(test_imput))
     Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setVelocity(50, 50)
     Chasing.setPosition(0, 0)
     Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
-    Chasing.setVelocity(50, 50)
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose2, function (sprite, otherSprite) {
     if (sprite == mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)) && otherSprite.image.equals(img`
@@ -106,16 +103,13 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose2, function (sprite, ot
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door2, function (sprite, otherSprite) {
     test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    while (!(test_imput >= 1 && test_imput <= 3)) {
-        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    }
     sprites.destroy(otherSprite)
     tiles.setCurrentTilemap(Enemies2(test_imput))
     Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setVelocity(50, 50)
     Chasing.setPosition(0, 0)
     Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
-    Chasing.setVelocity(50, 50)
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Enemy, function (sprite, otherSprite) {
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
@@ -155,20 +149,24 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose, function (sprite, oth
 })
 function Enemies2 (who_do_you_want_to_deal_with: number) {
     Place_to_run_in = [tilemap`level13`, tilemap`level15`, tilemap`level16`]
+    if (who_do_you_want_to_deal_with == 1) {
+        game.splash("welp good luck")
+    } else if (test_imput == 2) {
+        game.splash("hope you like the dark")
+    } else {
+        game.splash("well this sucks")
+    }
+    while (!(test_imput >= 1 && test_imput <= 3)) {
+        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
     return Place_to_run_in[who_do_you_want_to_deal_with - 1]
 }
 sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door, function (sprite, otherSprite) {
     test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    while (!(test_imput >= 1 && test_imput <= 3)) {
-        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    }
     sprites.destroy(otherSprite)
     tiles.setCurrentTilemap(Enemies2(test_imput))
     Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
-    Chasing.setPosition(0, 0)
-    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
-    Chasing.setVelocity(50, 50)
 })
 controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -197,16 +195,9 @@ controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
 })
 sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door2, function (sprite, otherSprite) {
     test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    while (!(test_imput >= 1 && test_imput <= 3)) {
-        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
-    }
     sprites.destroy(otherSprite)
     tiles.setCurrentTilemap(Enemies2(test_imput))
     Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
-    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
-    Chasing.setPosition(0, 0)
-    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
-    Chasing.setVelocity(50, 50)
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.KittyCat, function (sprite, otherSprite) {
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
