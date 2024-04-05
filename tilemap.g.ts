@@ -579,7 +579,7 @@ namespace myTiles {
 ................................
 .22222222222222.222222222222222.
 ................................
-`, [myTiles.transparency16,myTiles.tile4], TileScale.Sixteen);
+`, [myTiles.transparency16,myTiles.tile3], TileScale.Sixteen);
         }
         return null;
     })

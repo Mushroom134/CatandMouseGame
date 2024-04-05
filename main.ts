@@ -64,10 +64,15 @@ function Enemies (who_do_you_want_to_deal_with: number) {
     return List_of_things_to_run_from[who_do_you_want_to_deal_with - 1]
 }
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door, function (sprite, otherSprite) {
-    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(What_do_you_want_to_deal_with >= 1 && What_do_you_want_to_deal_with <= 3)) {
+        What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
     sprites.destroy(otherSprite)
-    tiles.setCurrentTilemap(Enemies2(test_imput))
-    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    tiles.setCurrentTilemap(Enemies2(What_do_you_want_to_deal_with))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), tiles.getTileLocation(62, 1))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)), tiles.getTileLocation(62, 62))
+    Chasing = sprites.create(Enemies(What_do_you_want_to_deal_with), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
     Chasing.setVelocity(50, 50)
     Chasing.setPosition(0, 0)
@@ -102,10 +107,15 @@ sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Rose2, function (sprite, ot
     }
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.Door2, function (sprite, otherSprite) {
-    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(What_do_you_want_to_deal_with >= 1 && What_do_you_want_to_deal_with <= 3)) {
+        What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
     sprites.destroy(otherSprite)
-    tiles.setCurrentTilemap(Enemies2(test_imput))
-    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    tiles.setCurrentTilemap(Enemies2(What_do_you_want_to_deal_with))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), tiles.getTileLocation(62, 1))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)), tiles.getTileLocation(62, 62))
+    Chasing = sprites.create(Enemies(What_do_you_want_to_deal_with), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
     Chasing.setVelocity(50, 50)
     Chasing.setPosition(0, 0)
@@ -151,22 +161,27 @@ function Enemies2 (who_do_you_want_to_deal_with: number) {
     Place_to_run_in = [tilemap`level13`, tilemap`level15`, tilemap`level16`]
     if (who_do_you_want_to_deal_with == 1) {
         game.splash("welp good luck")
-    } else if (test_imput == 2) {
+    } else if (What_do_you_want_to_deal_with == 2) {
         game.splash("hope you like the dark")
-    } else {
+    } else if (What_do_you_want_to_deal_with == 3) {
         game.splash("well this sucks")
-    }
-    while (!(test_imput >= 1 && test_imput <= 3)) {
-        test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
     }
     return Place_to_run_in[who_do_you_want_to_deal_with - 1]
 }
 sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door, function (sprite, otherSprite) {
-    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(What_do_you_want_to_deal_with >= 1 && What_do_you_want_to_deal_with <= 3)) {
+        What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
     sprites.destroy(otherSprite)
-    tiles.setCurrentTilemap(Enemies2(test_imput))
-    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    tiles.setCurrentTilemap(Enemies2(What_do_you_want_to_deal_with))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), tiles.getTileLocation(62, 1))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)), tiles.getTileLocation(62, 62))
+    Chasing = sprites.create(Enemies(What_do_you_want_to_deal_with), SpriteKind.Enemy)
     Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setVelocity(50, 50)
+    Chasing.setPosition(0, 0)
+    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
 })
 controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -194,10 +209,19 @@ controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.P
     )
 })
 sprites.onOverlap(SpriteKind.KittyCat, SpriteKind.Door2, function (sprite, otherSprite) {
-    test_imput = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    while (!(What_do_you_want_to_deal_with >= 1 && What_do_you_want_to_deal_with <= 3)) {
+        What_do_you_want_to_deal_with = game.askForNumber("What new problem are you dealing with 1 2 or 3?", 1)
+    }
     sprites.destroy(otherSprite)
-    tiles.setCurrentTilemap(Enemies2(test_imput))
-    Chasing = sprites.create(Enemies(test_imput), SpriteKind.Enemy)
+    tiles.setCurrentTilemap(Enemies2(What_do_you_want_to_deal_with))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)), tiles.getTileLocation(62, 1))
+    tiles.placeOnTile(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.Two)), tiles.getTileLocation(62, 62))
+    Chasing = sprites.create(Enemies(What_do_you_want_to_deal_with), SpriteKind.Enemy)
+    Chasing.setFlag(SpriteFlag.GhostThroughWalls, true)
+    Chasing.setVelocity(50, 50)
+    Chasing.setPosition(0, 0)
+    Chasing.follow(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
 })
 sprites.onOverlap(SpriteKind.littlemouse, SpriteKind.KittyCat, function (sprite, otherSprite) {
     sprites.destroy(mp.getPlayerSprite(mp.playerSelector(mp.PlayerNumber.One)))
@@ -416,7 +440,7 @@ let Book_2: Sprite = null
 let Book_1: Sprite = null
 let Place_to_run_in: tiles.TileMapData[] = []
 let Chasing: Sprite = null
-let test_imput = 0
+let What_do_you_want_to_deal_with = 0
 let List_of_things_to_run_from: Image[] = []
 game.showLongText("Mouse collects the roses to win, Dont let the cat catch you. The books take you to new mazes for more roses. Hint: There are fake walls if you know how to find them.", DialogLayout.Full)
 tiles.setCurrentTilemap(tilemap`level1`)

@@ -1,5 +1,5 @@
 {
-    "name": "The Actual PT - Copy - Copy",
+    "name": "The Actual PT - Copy - Copy - Copy",
     "description": "",
     "dependencies": {
         "device": "*",
@@ -18,7 +18,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.12.47",
+        "target": "1.12.49",
         "targetId": "arcade"
     },
     "supportedTargets": [
